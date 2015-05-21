@@ -2,6 +2,7 @@
 import os
 import jinja2
 import webapp2
+from google.appengine.api import users
 
 from models import Message
 
@@ -25,6 +26,21 @@ class BaseHandler(webapp2.RequestHandler):
     def render_template(self, view_filename, params=None):
         if not params:
             params = {}
+
+        user = users.get_current_user()
+        if user:
+            logged_in = True
+            logout_url = users.create_logout_url("/")
+            params["logged_in"] = logged_in
+            params["user"] = user
+            params["logout_url"] = logout_url
+        else:
+            logged_in = False
+            login_url = users.create_login_url("/")
+            params["logged_in"] = logged_in
+            params["user"] = user
+            params["login_url"] = login_url
+
         template = jinja_env.get_template(view_filename)
         self.response.out.write(template.render(params))
 
@@ -42,6 +58,13 @@ class MsgsentHandler(BaseHandler):
     def post(self):
         name = self.request.get("name")
         msg = self.request.get("msg")
+
+        if msg.find("SmartNinja") != -1:
+            if msg == "SmartNinja":
+                msg = "<img class='emote-big' src='/assets/emote-icons/logo-smart-ninja.jpg'>"
+            else:
+                msg = msg.replace("SmartNinja",
+                                  "<img class='emote-small' src='/assets/emote-icons/logo-smart-ninja.jpg'>")
 
         message2 = Message(name=name, msg=msg)
         message2.put()

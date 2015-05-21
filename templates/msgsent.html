@@ -1,23 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta name="Keywords" content="chattychat, chaty, chat">
-    <meta name="author" content=" Sebastjan Koci">
-    <meta charset="UTF-8">
-    <title>ChattyChat</title>
+{% extends "base.html" %}
 
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="shortcut icon" href="/assets/favicon/favicon.png">
-</head>
-<body>
+    {% block content %}
 
-    <center><h1>Your message was sent!</h1></center>
-    <br>
-    <br>
-    <br>
-    <br>
-    <center><p>Press button to go back</p></center>
-    <center><a href="/"><button>Back</button></a></center>
+        <center><h1>Your message was sent!</h1></center>
+        <br>
+        <br>
+        <br>
+        <br>
+        <center><p>Press button to go back</p></center>
+        <center><a href="/"><button class="btn btn-default">Back</button></a></center>
 
-</body>
-</html>
+    {% endblock content %}

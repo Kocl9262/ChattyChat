@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="Keywords" content="chattychat, chaty, chat">
+    <meta name="author" content=" Sebastjan Koci">
+    <meta charset="UTF-8">
+    <title>ChattyChat</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="shortcut icon" href="../assets/favicon/favicon.png">
+    <script src="../assets/js/jquery-1.11.2.min.js"></script>
+    <script src="../assets/js/bootstrap.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <p class="navbar-brand cc-title">ChattyChat</p>
+    </div>
+
+      {% if logged_in %}
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><p class="navbar-brand cc-user">Welcome: {{ user }}</p></li>
+            <li><a href="{{ logout_url }}"><button class="btn btn-default">Logout</button></a></li>
+          </ul>
+
+      {% else %}
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a class="nav-loged-out" href="{{ login_url }}"><button class="btn btn-default">Login</button></a></li>
+          </ul>
+
+      {% endif %}
+  </div>
+</nav>
+
+    {% block content %}
+
+    {% endblock content %}
+
+</body>
+</html>

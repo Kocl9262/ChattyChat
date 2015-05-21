@@ -1,6 +1,5 @@
 body {
     background-color: lightblue;
-    width: 99%;
 }
 .container2 {
     margin-top: 40px;
@@ -27,4 +26,19 @@ body {
 }
 .chat-border {
     border-radius: 5px;
+}
+.emote-big {
+    width: 50px;
+}
+.emote-small {
+    width: 25px;
+}
+.cc-title {
+    padding-top: 22px;
+}
+.cc-user {
+    padding-top: 22px;
+}
+.row-width {
+    width: 99%;
 }
