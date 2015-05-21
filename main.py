@@ -56,8 +56,8 @@ class MainHandler(BaseHandler):
 
 class MsgsentHandler(BaseHandler):
     def post(self):
-        name = self.request.get("name")
         msg = self.request.get("msg")
+        name = users.get_current_user().nickname()
 
         if msg.find("SmartNinja") != -1:
             if msg == "SmartNinja":
@@ -66,12 +66,10 @@ class MsgsentHandler(BaseHandler):
                 msg = msg.replace("SmartNinja",
                                   "<img class='emote-small' src='/assets/emote-icons/logo-smart-ninja.jpg'>")
 
-        message2 = Message(name=name, msg=msg)
+        message2 = Message(msg=msg, name=name)
         message2.put()
 
         self.render_template("msgsent.html")
-
-
 
 
 app = webapp2.WSGIApplication([
