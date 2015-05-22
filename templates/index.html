@@ -19,7 +19,7 @@
                     </form>
                 </div>
 
-                <div class="col-sm-3 col-md-offset-1">
+                <div class="col-md-3 col-md-offset-1">
                     {% for msg in message %}
                         <div class="list-group-item chat-div chat-border">
                             <p class="list-group-item-heading">Name: {{ msg.name }}<span class="date_span">Date: {{ msg.created.strftime('%d.%m.%Y at %H:%M') }}</span></p>
