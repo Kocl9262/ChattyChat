@@ -22,7 +22,7 @@
                 <div class="col-sm-3 col-md-offset-1">
                     {% for msg in message %}
                         <div class="list-group-item chat-div chat-border">
-                            <p class="list-group-item-heading">Name: {{ msg.name }}<span class="date_span">Date: {{ msg.created.strftime('%H:%M:%S %d.%m.%Y') }}</span></p>
+                            <p class="list-group-item-heading">Name: {{ msg.name }}<span class="date_span">Date: {{ msg.created.strftime('%d.%m.%Y at %H:%M') }}</span></p>
                             <h4 class="list-group-item-text">{{ msg.msg }}</h4>
                         </div>
                     {% endfor %}
