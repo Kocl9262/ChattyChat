@@ -1,10 +1,13 @@
 #!/usr/bin/env python
+
 import os
 import jinja2
 import webapp2
 from google.appengine.api import users
 
+from escape import escape_html
 from models import Message
+
 
 
 template_dir = os.path.join(os.path.dirname(__file__), "templates")
@@ -58,6 +61,8 @@ class MsgsentHandler(BaseHandler):
     def post(self):
         msg = self.request.get("msg")
         name = users.get_current_user().nickname()
+
+        msg = escape_html(msg)
 
         if msg.find("SmartNinja") != -1:
             if msg == "SmartNinja":
