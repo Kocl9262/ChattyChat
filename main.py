@@ -5,6 +5,7 @@ import jinja2
 import webapp2
 from google.appengine.api import users
 
+from emoteicons import emoteicon
 from escape import escape_html
 from models import Message
 
@@ -64,12 +65,7 @@ class MsgsentHandler(BaseHandler):
 
         msg = escape_html(msg)
 
-        if msg.find("SmartNinja") != -1:
-            if msg == "SmartNinja":
-                msg = "<img class='emote-big' src='/assets/emote-icons/logo-smart-ninja.jpg'>"
-            else:
-                msg = msg.replace("SmartNinja",
-                                  "<img class='emote-small' src='/assets/emote-icons/logo-smart-ninja.jpg'>")
+        msg = emoteicon(msg)
 
         message2 = Message(msg=msg, name=name)
         message2.put()
