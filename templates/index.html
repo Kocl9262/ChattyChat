@@ -3,14 +3,32 @@
 {% block content %}
 
     {% if logged_in %}
+
+
+
+
         <div class="container2">
             <div class="row row-width">
                 <div class="col-md-4 col-md-offset-2">
+                    <label class="col-md-2 control-label">Emotes: </label>
+                    <div id="emoticons">
+                        &nbsp &nbsp
+                        <img onclick="insertSmiley('SmartNinja')" alt="SmartNinja" class='emote-small' src='/assets/emote-icons/SmartNinja.gif'>
+                        <img onclick="insertSmiley('DeaD')" alt="DeaD" class='emote-small' src='/assets/emote-icons/DeaD.gif'>
+                        <img onclick="insertSmiley('DeviL')" alt="DeviL" class='emote-small' src='/assets/emote-icons/DeviL.gif'>
+                        <img onclick="insertSmiley('MhehE')" alt="MhehE" class='emote-small' src='/assets/emote-icons/MhehE.gif'>
+                        <img onclick="insertSmiley('RlY')" alt="RlY" class='emote-small' src='/assets/emote-icons/RlY.gif'>
+                        <img onclick="insertSmiley('SaD')" alt="SaD" class='emote-small' src='/assets/emote-icons/SaD.gif'>
+                        <img onclick="insertSmiley('SumljiV')" alt="SumljiV" class='emote-small' src='/assets/emote-icons/SumljiV.gif'>
+                        <img onclick="insertSmiley('WinkWink')" alt="WinkWink" class='emote-small' src='/assets/emote-icons/WinkWink.gif'>
+                        <img onclick="insertSmiley('WooT')" alt="WooT" class='emote-small' src='/assets/emote-icons/WooT.gif'>
+                        <img onclick="insertSmiley('ZombiE')" alt="SmartNinja" class='emote-small' src='/assets/emote-icons/ZombiE.gif'>
+                    </div>
                     <form method="post" action="/msgsent">
                         <div class="form-group">
                             <label class="col-md-2 control-label">Message: </label>
                             <div class="col-md-10">
-                                <textarea class="form-control" rows="7" name="msg" placeholder="Text here" maxlength="750" required></textarea>
+                                <textarea id="emote" class="form-control" rows="7" name="msg" placeholder="Text here" maxlength="750" required></textarea>
                             </div>
                             <div class="btn-right">
                             <button class="col-md-2 col-md-offset-2 b-send btn btn-default">Send</button>
