@@ -20,7 +20,7 @@
   <div class="container-fluid">
 
     <div class="navbar-header">
-      <p class="navbar-brand cc-title">ChattyChat</p>
+      <a href="/"><p class="navbar-brand cc-title">ChattyChat</p></a>
     </div>
 
       {% if logged_in %}
@@ -39,10 +39,15 @@
       {% endif %}
   </div>
 </nav>
+    {% if logged_in %}
 
-    {% block content %}
+        {% block content %}
 
-    {% endblock content %}
+        {% endblock content %}
+
+    {% else %}
+        <center><h1>Please login</h1></center>
+    {% endif %}
 
 </body>
 </html>

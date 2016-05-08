@@ -2,15 +2,10 @@
 
 {% block content %}
 
-    {% if logged_in %}
-
-
-
-
         <div class="container2">
             <div class="row row-width">
                 <div class="col-md-4 col-md-offset-2">
-                    <label class="col-md-2 control-label">Emotes: </label>
+                    <label class="col-md-2">Emotes: </label>
                     <div id="emoticons">
                         &nbsp &nbsp
                         <img onclick="insertSmiley('SmartNinja')" alt="SmartNinja" class='emote-small' src='/assets/emote-icons/SmartNinja.gif'>
@@ -37,18 +32,34 @@
                     </form>
                 </div>
 
-                <div class="col-md-3 col-md-offset-1">
+                <div class="col-md-4">
                     {% for msg in message %}
-                        <div class="list-group-item chat-div chat-border">
-                            <p class="list-group-item-heading">Name: {{ msg.name }}<span class="date_span">Date: {{ msg.created.strftime('%d.%m.%Y at %H:%M') }}</span></p>
-                            <h4 class="list-group-item-text">{{ msg.msg }}</h4>
+
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">Name: {{ msg.name }}<span class="date_span">Date: {{ msg.created.strftime('%d.%m.%Y at %H:%M') }}
+
+                                {% if admin %}
+
+                                    <a href="/{{ msg.key.id() }}/delete"><img class="delete-size" src="/assets/emote-icons/delete.gif"></a>
+
+                                {% elif user.nickname() == msg.name %}
+
+                                    <a href="/{{ msg.key.id() }}/delete"><img class="delete-size" src="/assets/emote-icons/delete.gif"></a>
+
+                                {% endif %}
+
+                            </span></div>
+
+                            <div class="panel-body">
+
+                            {{ msg.msg }}
+
+                            </div>
                         </div>
+
                     {% endfor %}
                 </div>
             </div>
         </div>
-    {% else %}
-        <center><h1>Please login</h1></center>
-    {% endif %}
 
 {% endblock content %}

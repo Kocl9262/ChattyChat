@@ -42,3 +42,9 @@ body {
 .row-width {
     width: 99%;
 }
+.delete-size {
+    width: 15px;
+}
+.delete-button{
+    display: inline;
+}

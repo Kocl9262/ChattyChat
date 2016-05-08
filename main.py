@@ -33,6 +33,9 @@ class BaseHandler(webapp2.RequestHandler):
 
         user = users.get_current_user()
         if user:
+            if users.is_current_user_admin():
+                admin = True
+                params["admin"] = admin
             logged_in = True
             logout_url = users.create_logout_url("/")
             params["logged_in"] = logged_in
@@ -70,10 +73,27 @@ class MsgsentHandler(BaseHandler):
         message2 = Message(msg=msg, name=name)
         message2.put()
 
-        self.render_template("msgsent.html")
+        return self.redirect_to("home")
+
+
+class MsgDelete(BaseHandler):
+    def get(self, msg_id):
+        msg = Message.get_by_id(int(msg_id))
+
+        params = {"msg": msg}
+
+        self.render_template("delete_msg.html", params)
+
+    def post(self, msg_id):
+        msg = Message.get_by_id(int(msg_id))
+
+        msg.key.delete()
+
+        return self.redirect_to("home")
 
 
 app = webapp2.WSGIApplication([
-    webapp2.Route('/', MainHandler),
+    webapp2.Route('/', MainHandler, name="home"),
     webapp2.Route('/msgsent', MsgsentHandler),
+    webapp2.Route('/<msg_id:\d+>/delete', MsgDelete),
 ], debug=True)
